@@ -1,0 +1,260 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>LeadLab by WiredMinds - Login</title>
+		
+					
+<!-- Begin EXT-JS include -->
+<link rel="stylesheet" type="text/css" href="../public/ext/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../public/ext/examples/ux/css/ux-all.css" />
+<!-- End EXT-JS include -->
+
+<!-- Begin WM include -->
+<link href="../public/css/generic.css" rel="stylesheet" type="text/css" />
+<!-- End WM include -->				
+						
+		<script type="text/javascript">
+		
+								var defaultDataControllerNum = 1;	
+							</script>
+	</head>
+	<body id="wmBody">
+		
+		<!--  load all the scripts after the loading layer -->
+					
+<!-- Begin ExtJs include -->
+<script type="text/javascript" src="../public/ext/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="../public/ext/ext-all.js"></script>
+<script type="text/javascript" src="../public/ext/examples/ux/ux-all.js"></script>
+<script type="text/javascript" src="../public/ext/src/locale/ext-lang-en.js"></script>
+
+<script type="text/javascript">
+var dataControllerInitOverwrite = {};
+dataControllerInitOverwrite[defaultDataControllerNum] = {};
+dataControllerInitOverwrite[defaultDataControllerNum]['apiParamsObj'] = {};
+</script>
+<script type="text/javascript" src="../public/js/ExtJsExtensions.js"></script>
+<script type="text/javascript" src="../public/js/General.js"></script>
+<script type="text/javascript" src="../public/js/WMTools.js"></script>
+<script type="text/javascript" src="../public/js/Customer.js"></script>
+<script type="text/javascript" src="../public/js/LeftNavi.js"></script>
+
+<script type="text/javascript">
+	// js paths
+		
+	// ajax url
+	var serviceURL = "http://count.carrierzone.com/app/frontend/Ajax/";
+
+	// rights
+	
+	// role rights
+	
+	
+		
+		
+		
+	
+	</script>		
+		<script type="text/javascript">
+		Ext.onReady(function(){
+			Ext.QuickTips.init();
+			document.getElementById('loginEmailInput').focus();
+		});
+
+		</script>
+
+		
+		
+		<div class="StdTopHeader">
+	<div class="StdTopHeaderLogo">
+	</div>
+</div>
+		<div id="loginPowered" class="loginPowered">
+			<a href="http://www.wiredminds.de" target='new'><p>Powered by</p></a>
+		</div>
+
+		<div class="newlogin"><center>			
+			<table cellpadding="0" cellspacing="0" class="newloginbox">
+			<tr>
+				<th class="newloginbox" style="width: 30px;">
+					<div class="loginButton"></div>
+				</th>
+				<th class="newloginbox">
+					<div class="loginHead"></div>
+				</th>
+				<th class="newloginbox">
+					<div class="loginHeadEE"></div>
+				</th>
+			</tr>
+			<tr>
+			<td class="newloginbox">&nbsp;</td>
+			<td class="newloginbox" align="left" valign="top">
+					  <form name="loginForm" id="loginForm" action="login.php" method="post" style="margin: 0px; padding: 0px;">
+			    <input type="hidden" name="refURL" value="/app/ct/index.php">
+			    <input type="hidden" name="action" value="login">
+				<input type="hidden" name="language" value="en" id="language">
+					  <table border="0" align="left">
+							      <tr class="loginRow">
+				<td>E-Mail:</td>
+				<td><input id="loginEmailInput" type="text" class="input" name="email" value="" size="17" maxlength="96" style="width: 172px;"></td>
+			      </tr>
+			      <tr class="loginRow">
+				<td>Password:</td>
+				<td><input type="password" name="password" value="" size="17" maxlength="40" style="width: 172px;"></td>
+			      </tr>
+			      <tr class="loginRow">
+				<td>&nbsp;</td>
+				<td><select name="language" onChange="changeLang(this);" class="languageSelector" style="width: 172px;">
+					<option value="">Language</option>
+											<option  value="de">German</option>
+											<option  value="en">English</option>
+											<option  value="fr">Français</option>
+									</select></td>
+			      </tr>
+				  <tr class="loginRow">
+				   	<td style="text-align:right;"><input name="remember" type="checkbox" style="border: 0px;" />&nbsp;</td>
+					<td>Remember me on this computer.</td>
+				  </tr>
+			      <tr>
+					<td colspan="2">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 0px;">
+								  <tr class="loginRow2">
+									  <td>&nbsp;</td>
+									  <td align="right">
+									  	<div id="submitBtnContainer" class="submitBtnContainer"></div>
+									  </td>
+								  </tr>
+								  <tr class="loginRow2">
+								    <td>
+								    	<a href="login.php?submode=forgot">Forgot your password?</a>
+								    </td>
+								    <td>&nbsp;</td>
+								  </tr>
+								  <tr class="loginRow2">
+								    <td>
+								    	&nbsp;
+								    </td>
+								    <td>&nbsp;</td>
+								  </tr>
+								  <tr class="loginRow">
+								    <td>
+										<noscript>
+											Please activate Javascript.										 </noscript>
+								    </td>
+								    <td>&nbsp;</td>
+								  </tr>
+		
+						</table>
+					</td>
+			      </tr>
+			    </table>
+			  </form>
+			  <script>
+			  	var loginTxt = 'Login';
+				
+				Ext.onReady(function(){
+
+					var mySubmitBtn = new Ext.Button({
+								text: loginTxt,
+								minWidth:75,
+								renderTo: 'submitBtnContainer',
+								type: 'submit',
+								style: 'border-spacing: 0px;',
+								handler: function(){
+									document.forms["loginForm"].submit();
+								}
+							});
+						mySubmitBtn.render();
+				});
+
+				function changeLang(field){
+					var comboValue
+					var selIndex = field.selectedIndex;
+					comboValue = field.options[selIndex].value;
+
+					document.loginForm.action.value='index.php';
+					Ext.get('language').dom.value = comboValue;
+					document.loginForm.submit();
+				}
+				
+			  </script>
+			</td>
+			<td class="newloginbox" align="right" valign="center" style="text-align: center;">
+				<div class="loginWuerfel"></div>
+			</td>
+		      </tr>
+		    </table></center>
+			<div class="loginVersion" >v. 5.9.6</div>
+		</div>
+		
+		<!-- START MindTrack.tpl
+-->
+<!-- WiredMinds Web eMetrics START -->
+<script language="JavaScript"><!--
+js='1.0';
+//-->
+</script>
+<script language="JavaScript1.1"><!--
+js='1.1';
+//-->
+</script>
+<script language="JavaScript1.2"><!--
+js='1.2';
+//-->
+</script>
+<script language="JavaScript1.3"><!--
+js='1.3';
+//-->
+</script>
+<script language="JavaScript1.4"><!--
+js='1.4';
+//-->
+</script>
+<script language="JavaScript1.5"><!--
+js='1.5';
+//-->
+</script>
+<!-- WiredMinds eMetrics tracking START -->
+<script type="text/javascript">
+	var wiredminds = [];
+	wiredminds.push(["setTrackParam", "wm_custnum", "1"]);
+	wiredminds.push(["setTrackParam", "wm_track_alt", ""]);
+	wiredminds.push(["setTrackParam", "wm_page_name", "WM_CT_DE_en|"]);
+	wiredminds.push(["setTrackParam", "wm_group_name", "WM_CT_DE_en/"]);
+	wiredminds.push(["setTrackParam", "wm_sname", "count.carrierzone.com"]);
+	wiredminds.push(["count"]);
+	wiredminds.push(["registerHeatmapEvent", "click"]);
+	
+	
+	(function() {
+		function wm_async_load() {
+			var wm = document.createElement('script');
+			wm.type = 'text/javascript';
+			wm.async = true;
+	
+			wm.src = 'http://:6.175.41.110/track/count.js';
+			
+			var el = document.getElementsByTagName('script')[0];
+			el.parentNode.insertBefore(wm, el);
+		}
+
+		if (window.addEventListener) {
+			window.addEventListener('load', wm_async_load, false);
+		} else if (window.attachEvent){
+			window.attachEvent('onload', wm_async_load);
+		}
+	})();
+	
+
+
+
+</script>
+<noscript>
+	<div>
+		<a target="_blank" HREF="http://www.wiredminds.de"><img src="http://:6.175.41.110/track/ctin.php?custnum=1&amp;sname=count.carrierzone.com&amp;wm_page_name=WM_CT_DE_en%7C&amp;wm_group_name=WM_CT_DE_en%2F&amp;referrer=" alt="WiredMinds eMetrics tracking with LeadLab" border="0"></a>
+	</div>
+</noscript>
+<!-- WiredMinds eMetrics tracking END -->
+<!-- END   click_track_code.html -->	</body>
+</html>
